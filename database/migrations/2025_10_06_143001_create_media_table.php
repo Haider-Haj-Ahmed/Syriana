@@ -10,12 +10,11 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('comments', function (Blueprint $table) {
+        Schema::create('media', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->foreignId('post_id')->constrained()->onDelete('cascade');
-            $table->text('body');
-            $table->foreignId('parent_id')->nullable()->constrained('comments')->onDelete('cascade'); // replies
+            $table->morphs('mediable'); // ينشئ mediable_id (bigint) + mediable_type (string)
+            $table->string('media_path'); // مسار الصورة أو الفيديو
+            $table->string('type')->nullable(); // optional: image/video
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('comments');
+        Schema::dropIfExists('media');
     }
 };

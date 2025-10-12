@@ -64,4 +64,25 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    /**
+     * User role helpers
+     */
+    public function isGuide(): bool
+    {
+        return $this->role === 'guide';
+    }
+
+    public function isTourist(): bool
+    {
+        return $this->role === 'tourist';
+    }
+
+    /**
+     * Relationship: User has many posts
+     */
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

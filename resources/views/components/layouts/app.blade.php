@@ -7,16 +7,16 @@
     @vite('resources/css/app.css')
     @livewireStyles
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased">
+<body class="bg-black text-gray-200 antialiased">
     <!-- Navbar -->
-    <nav class="bg-white shadow-md fixed top-0 left-0 right-0 z-50">
+    <nav class="bg-gray-900 shadow-md fixed top-0 left-0 right-0 z-50 border-b border-orange-600">
         <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
-            <h1 class="text-2xl font-bold text-rose-600">Syriana</h1>
+            <h1 class="text-2xl font-bold text-orange-500 tracking-wide">Syriana</h1>
             <div class="space-x-6">
-                <a href="#" class="text-gray-700 hover:text-rose-600 font-medium">Home</a>
-                <a href="#" class="text-gray-700 hover:text-rose-600 font-medium">Places</a>
-                <a href="#" class="text-gray-700 hover:text-rose-600 font-medium">Guides</a>
-                <a href="#" class="text-gray-700 hover:text-rose-600 font-medium">Contact</a>
+                <a href="#" class="text-gray-300 hover:text-orange-500 font-medium transition-colors">Home</a>
+                <a href="#" class="text-gray-300 hover:text-orange-500 font-medium transition-colors">Places</a>
+                <a href="#" class="text-gray-300 hover:text-orange-500 font-medium transition-colors">Guides</a>
+                <a href="#" class="text-gray-300 hover:text-orange-500 font-medium transition-colors">Contact</a>
             </div>
         </div>
     </nav>

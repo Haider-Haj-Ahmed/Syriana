@@ -18,6 +18,7 @@ class PostFactory extends Factory
         return [
             'user_id' => User::factory(),
             'caption' => fake()->paragraph(),
+            'title' => fake()->sentence(),
             'media_path' => null,
             'media_type' => null,
             'rating' => fake()->optional()->numberBetween(1, 5),

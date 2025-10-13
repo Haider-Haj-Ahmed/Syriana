@@ -1,23 +1,19 @@
-<div>
-    <!-- Hero Section -->
-    <section class="relative bg-cover bg-center h-[85vh]" 
-        style="background-image: url('https://images.unsplash.com/photo-1550510537-89d543bb9c8c?auto=format&fit=crop&w=1400&q=80');">
-        <div class="absolute inset-0 bg-black bg-opacity-70 flex items-center justify-center">
-            <div class="text-center text-white px-6">
-                <h1 class="text-5xl font-extrabold mb-4 text-orange-500">Discover the Beauty of Syria</h1>
-                <p class="text-lg mb-6 text-gray-200">Explore ancient cities, breathtaking landscapes, and hidden gems with local guides.</p>
-                <a href="{{ route('posts.index') }}" 
-                   class="bg-orange-600 hover:bg-orange-700 px-6 py-3 rounded-lg font-semibold text-white transition-all shadow-lg hover:scale-105">
-                    Start Exploring
-                </a>
-            </div>
-        </div>
-    </section>
+<div x-data="{
+        observe() {
+            let observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        $wire.call('loadMore')
+                    }
+                })
+            });
+            observer.observe(this.$refs.infiniteScrollTrigger);
+        }
+    }" x-init="observe">
 
-    <!-- Posts Preview -->
-    <section class="py-16 bg-black">
+    <section class="py-16 bg-black min-h-screen">
         <div class="max-w-6xl mx-auto px-6">
-            <h2 class="text-3xl font-bold text-center mb-10 text-orange-500">Latest Posts</h2>
+            <h2 class="text-3xl font-bold text-center mb-10 text-orange-500">All Posts</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
                 @foreach ($posts as $post)
                     <div class="bg-gray-900 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition transform hover:scale-105 hover:border-2 hover:border-orange-500">
@@ -38,13 +34,14 @@
                 @endforeach
             </div>
 
-            <!-- View More Button -->
-            <div class="mt-10 text-center">
-                <a href="{{ route('posts.index') }}" 
-                   class="bg-orange-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-orange-700 transition shadow-lg hover:scale-105">
-                    View More
-                </a>
+            <!-- Infinite Scroll Trigger -->
+            <div x-ref="infiniteScrollTrigger" class="mt-10 text-center text-gray-400">
+                @if ($posts->count() >= $perPage)
+                    <span>Loading more...</span>
+                @else
+                    <span>No more posts</span>
+                @endif
             </div>
         </div>
     </section>
-</div>
+</div>  

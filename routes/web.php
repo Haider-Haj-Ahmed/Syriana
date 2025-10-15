@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Route;
 //     return view('home');
 // });
 
-Route::get('/home', HomePage::class)->name('home');
+Route::get('/', HomePage::class)->name('home');
 Route::get('/posts', PostComposer::class)->name('posts.index');
 
 Route::middleware([

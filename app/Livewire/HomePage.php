@@ -8,6 +8,17 @@ use Livewire\WithPagination;
 
 class HomePage extends Component
 {
+    public $showCreateModal = false;
+    public $posts;
+    protected $listeners = ['postCreated' => 'refreshPosts'];
+    public function mount()
+    {
+        $this->refreshPosts();
+    }
+    public function refreshPosts()
+    {
+        $this->posts = Post::with('user')->latest()->take(9)->get();
+    }
     public function render()
     {
 
